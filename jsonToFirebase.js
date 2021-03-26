@@ -1,6 +1,8 @@
 const firebase = require('firebase');
+const generateUniqueId = require('generate-unique-id');
 const { link } = require('fs');
 const data = require('./data.json')
+
 var firebaseConfig = {
     apiKey: "AIzaSyAve9SFpbBZeS40BMYwD4KNzMoht1SyxnI",
     authDomain: "sanganaka-f8486.firebaseapp.com",
@@ -14,11 +16,16 @@ var firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
+
 const addData = ()=> {
     i=1;
     data.Sheet1.forEach(async (dat)=> {
+        const id = generateUniqueId({
+            length: 12,
+            useLetters: true
+        });
         await db.collection("articles").add({
-            id: Math.random().toString(36).substring(2, 15) + Date.now(),
+            id: id,
             category: dat.Category,
             topic: dat.Topic,
             content: dat.Content,
@@ -30,8 +37,12 @@ const addData = ()=> {
             subBy: 'Team Sangnaka',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
+        .catch((err)=>{
+            console.log(err)
+        })
         console.log("data added"+ i++);
     })
+    console.log("all data added "+data.Sheet1.length)
 }
 
 addData();
