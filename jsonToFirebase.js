@@ -29,7 +29,7 @@ const addData = ()=> {
             category: dat.Category,
             topic: dat.Topic,
             content: dat.Content,
-            article_links: [dat["Article Link"]],
+            articles: [dat["Article Link"]],
             credits: dat["Credits"],
             interest: dat.Interest,
             images: [dat.Image],
