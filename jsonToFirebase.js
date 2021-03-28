@@ -29,11 +29,11 @@ const addData = ()=> {
             category: dat.Category,
             topic: dat.Topic,
             content: dat.Content,
-            article_link: dat["Article Link"],
+            article_links: [dat["Article Link"]],
             credits: dat["Credits"],
             interest: dat.Interest,
             images: [dat.Image],
-            videos: dat["Video Link"],
+            videos: [dat["Video Link"]],
             subBy: 'Team Sangnaka',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
